@@ -71,6 +71,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.GEOMETRY('POINT'),
       allowNull: false,
     },
+    primary_cost: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      defaultValue: 0
+    },
   }, {
     sequelize,
     modelName: 'CopyProject',

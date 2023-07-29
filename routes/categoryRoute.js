@@ -19,9 +19,17 @@ const router = express.Router();
 
 const categoryController = require('../controller/categoryController');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+const isManager = require('../middleware/isManagerMddleware');
+
+router.use(isAuth);
+
 router.get('/categories', categoryController.getAllCategories);
 
 router.get('/category/:id', categoryController.getOneCategorie);
+
+router.use(isManager);
 
 router.post('/category/store', upload.single('image'), categoryController.storeCategory);
 

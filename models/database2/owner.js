@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.CopyProjectOwner,
         onDelete: 'SET NULL'
       });
+      this.hasMany(models.Comment, {
+        foreignKey: "owner_id",
+        as: "comments"
+      });
     }
   }
   Owner.init({

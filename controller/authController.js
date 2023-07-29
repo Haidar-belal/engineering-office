@@ -1,4 +1,6 @@
 const { Manager, Engineer } = require('../models');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.login =  (req, res, next) => {
     const { email, password, type } = req.body;
@@ -51,25 +53,31 @@ async function managerLogin(email, password, res) {
         if (manager.password === password) {
             manager.online = true;
             manager.save();
-            return res.status(200).json(manager);
+            const token = jwt.sign({ id: manager.manager_id.toString(), email: manager.email, password: manager.password }, process.env.SECRET_KEY, {
+            expiresIn: "10h",
+            });
+            return res.status(200).json({token: token, user: manager});
         }
         return res.status(401).json({massage: "password is not valid"});
     }
 };
 
 async function enginnerLogin(email, password, res) {
-    const enginner = await Engineer.findOne({
+    const engineer = await Engineer.findOne({
         where: {
             email: email
         }
     });
-    if (!enginner) {
+    if (!engineer) {
         return res.status(401).json({massage: "email not exists"});
     } else {
-        if (enginner.password === password) {
-            enginner.online = true;
-            enginner.save();
-            return res.status(200).json(enginner);
+        if (engineer.password === password) {
+            engineer.online = true;
+            engineer.save();
+            const token = jwt.sign({ id: engineer.engineer_id.toString(), email: engineer.email, password: engineer.password }, process.env.SECRET_KEY, {
+            expiresIn: "10h",
+            });
+            return res.status(200).json({token: token, user: engineer});
         }
         return res.status(401).json({massage: "password is not valid"});
     }

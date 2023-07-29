@@ -20,6 +20,10 @@ const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
 
 const orderDocumentController = require('../controller/orderDocumentController');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.post('/order-document/store', upload.single("pdf"), orderDocumentController.storeOrderDocument); // not implemented
 
 

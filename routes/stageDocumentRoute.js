@@ -21,6 +21,10 @@ const stageDocumentController = require('../controller/stageDocumentController')
 
 const stageValidation = require('../validation/stageValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.post('/stage-document/store', upload.single('pdf'), stageDocumentController.storeStageDocument);
 
 module.exports = router;

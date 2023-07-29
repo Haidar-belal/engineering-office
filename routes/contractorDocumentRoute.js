@@ -21,6 +21,12 @@ const contractorDocumentController = require('../controller/contractorDocumentCo
 
 const contractorValidation = require('../validation/contractorValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+const isManager = require('../middleware/isManagerMddleware');
+
+router.use(isAuth, isManager);
+
 router.post('/contractor-document/store', contractorValidation.storContractorDocument, upload.single('pdf'), contractorDocumentController.contractorDocumentStore);
 
 module.exports = router;

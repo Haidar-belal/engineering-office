@@ -6,6 +6,12 @@ const managerController = require('../controller/managerController');
 
 const managerValidation = require('../validation/managerValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+const isManager = require('../middleware/isManagerMddleware');
+
+router.use(isAuth, isManager);
+
 router.get('/managers', managerController.getAllManagers);
 
 router.get('/manager/:id', managerController.getOneManager);

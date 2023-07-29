@@ -6,6 +6,10 @@ const stageController = require('../controller/stageController');
 
 const stageValidation = require('../validation/stageValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.get('/stages-details/:id', stageController.getAllStageForOneProjectWithEveryThing);
 
 router.get('/stages/:id', stageController.getAllStageForOneProject);

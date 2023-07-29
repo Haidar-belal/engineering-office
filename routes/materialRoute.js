@@ -19,6 +19,9 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
 
 router.get('/materials', materialController.getAllMarerials);
 

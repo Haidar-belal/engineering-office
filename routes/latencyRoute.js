@@ -6,6 +6,10 @@ const latencyController = require('../controller/latencyController');
 
 const latencyValiation = require('../validation/latencyValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.get('/accepted-latency', latencyController.getAllAcceptedLatency);
 
 router.get('/latencies', latencyController.getAllLatency);

@@ -6,6 +6,10 @@ const engineerController = require('../controller/engineerController');
 
 const engineerVlidation = require('../validation/engineerValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.get('/engineers', engineerController.getAllEngineers); 
 
 router.get('/engineer/:id', engineerController.getOneEngineer); 

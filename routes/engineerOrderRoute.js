@@ -6,6 +6,10 @@ const engineerOrderController = require('../controller/engineerOrderController')
 
 const engineerOrderValidation = require('../validation/engineerOrderValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.get('/engineer-order/accepted', engineerOrderController.getAcceptedEngineerOrder); 
 
 router.get('/engineer-orders', engineerOrderController.getAllEngineerOrder); 

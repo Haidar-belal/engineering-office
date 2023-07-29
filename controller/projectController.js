@@ -365,23 +365,17 @@ exports.getOwnerProjectInfo = async (req, res, next) => {
             },
             group: ['Project.project_id']
         });
-        // const projectsWithDocumentsWithStagesWithStageMaterialsWithStageBillssssssssssssssssssss = projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills[0].toJSON();
         for (let index = 0; index < projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills.length; index++) {
             projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills[index].setDataValue('stage_materials_payment', stageMaterialsPayment[index].get('stage_materials_payment'));
             projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills[index].setDataValue('owner_bill_payment', bills[index].get('owner_bill_payment'));
             projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills[index].setDataValue('stage_bill_payment', stageBillsPayment[index].get('stage_bill_payment'));
-
             total_stage_materials_payment += stageMaterialsPayment[index].get('stage_materials_payment');
             total_owner_bill_payment += bills[index].get('owner_bill_payment');
             total_stage_bill_payment += stageBillsPayment[index].get('stage_bill_payment');
-            // projectsWithDocumentsWithStagesWithStageMaterialsWithStageBillssssssssssssssssssss['iiii'] = 90;
-            // projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills[index]['stage_materials_payment'] = stageMaterialsPayment[index].get('stage_materials_payment');
         }
-
         projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills.push({'total_stage_materials_payment': total_stage_materials_payment});
         projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills.push({'total_owner_bill_payment': total_owner_bill_payment});
         projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills.push({'total_stage_bill_payment': total_stage_bill_payment});
-
         return res.status(200).json(projectsWithDocumentsWithStagesWithStageMaterialsWithStageBills);
     } catch (error) {
         return res.status(500).json(error);
@@ -489,37 +483,6 @@ exports.getOneProjectInfo = async (req, res, next) => {
         return res.status(500).json(error);
     }
 };
-
-
-// exports.getAllProjectsForOneOwner = async (req, res, next) => {
-
-//     const {id} = req.params; //owner_id
-//     let ids= [];
-//     try {
-//         const projectIds = await ProjectOwner.findAll({
-//             where: {
-//                 owner_id: id
-//             }
-//         });
-//         for (let index = 0; index < projectIds.length; index++) {
-//             ids.push(projectIds[index].project_id);
-//         }
-//         const projects = await Project.findAll({
-//             where: {
-//                 project_id: {
-//                     [Op.in]: ids
-//                 }
-//             },
-//             include: {
-//                 model: ProjectDocument,
-//                 as: "projectdocuments"
-//             },
-//         });
-//         return res.status(200).json(projects);
-//     } catch (error) {
-//         return res.status(500).json(error);
-//     }
-// };
 
 
 

@@ -21,6 +21,10 @@ const latencyDocumentController = require('../controller/latencyDocumentControll
 
 const latencyDocumentValidation = require('../validation/latencyValidation');
 
+const isAuth = require('../middleware/isAuthMddleware');
+
+router.use(isAuth);
+
 router.post('/latency-document/store', latencyDocumentValidation.storeLatencyDocument, upload.single('pdf'), latencyDocumentController.storeLatencyDocument);
 
 module.exports = router;
