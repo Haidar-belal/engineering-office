@@ -4,8 +4,8 @@ Engineering Office Collaboration is a platform designed to enhance collaboration
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/engineer-office-public.git`
-2. Navigate to the project directory: `cd engineer-office-public`
+1. Clone the repository: `git clone https://github.com/Haidar-belal/engineering-office.git`
+2. Navigate to the project directory: `cd engineer-office`
 3. Install dependencies: `npm install`
 
 ## Usage
